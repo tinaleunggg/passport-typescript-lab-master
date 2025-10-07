@@ -18,18 +18,12 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-/*
-FIX ME (types) 😭
-*/
-// get called when user pass authentication
-passport.serializeUser(function (user: Express.User, done: Function) {
+passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
   done(null, user.id);
 });
 
-/*
-FIX ME (types) 😭
-*/
-passport.deserializeUser(function (id: number, done: Function) {
+
+passport.deserializeUser(function (id: number, done: (err: any, user?: Express.User | false | null) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
