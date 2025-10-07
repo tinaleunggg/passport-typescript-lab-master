@@ -22,7 +22,7 @@ const localStrategy = new LocalStrategy(
 FIX ME (types) 😭
 */
 // get called when user pass authentication
-passport.serializeUser(function (user: any, done: Function) {
+passport.serializeUser(function (user: Express.User, done: Function) {
   done(null, user.id);
 });
 
