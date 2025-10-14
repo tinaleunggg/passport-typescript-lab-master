@@ -27,6 +27,7 @@ app.use(flash());
 
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
+import adminRoute from "./routes/adminRoute";
 
 // Middleware for express
 app.use(express.json());
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/admin", adminRoute);
 
 app.listen(port, () => {
   console.log(`🚀 Server has started on port ${port}`);

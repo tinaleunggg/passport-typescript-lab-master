@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
+import { session } from "passport";
 
 router.get("/", (req, res) => {
   res.send("welcome");

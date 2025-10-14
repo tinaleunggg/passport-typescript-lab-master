@@ -11,12 +11,19 @@ router.get("/login", forwardAuthenticated, (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/dashboard",
+    // successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
     failureFlash: true
     // ✅ TODO : pass variable error message to here
     /* FIX ME: 😭 failureMsg needed when login fails */
-  })
+  }), 
+  (req, res) => {
+    if (req?.user?.role == "admin"){
+      return res.redirect("/admin");
+    } else {
+      return res.redirect("/dashboard");
+    }
+  }
 );
 
 router.get('/github',
@@ -30,7 +37,7 @@ router.get('/github/callback',
   function(req, res) {
     res.redirect('/dashboard');
   });
-  
+
 router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) console.log(err);
