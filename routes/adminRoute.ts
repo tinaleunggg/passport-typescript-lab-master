@@ -24,7 +24,6 @@ router.get("/", ensureIsAdmin, (req, res) => {
 
 router.get("/revoke/:sessionId", ensureIsAdmin, (req, res)=> {
     const sessionId = req.params.sessionId;
-    console.log(sessionId)
     const store = req.sessionStore;
     store.destroy(sessionId, (err) => { console.log(err)});
     res.redirect("/admin")
