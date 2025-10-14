@@ -24,19 +24,19 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
-  done(null, user.id);
-});
+// passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
+//   done(null, user.id);
+// });
 
 
-passport.deserializeUser(function (id: number, done: (err: any, user?: Express.User | false | null) => void) {
-  let user = getUserById(id);
-  if (user) {
-    done(null, user);
-  } else {
-    done({ message: "User not found" }, null);
-  }
-});
+// passport.deserializeUser(function (id: number, done: (err: any, user?: Express.User | false | null) => void) {
+//   let user = getUserById(id);
+//   if (user) {
+//     done(null, user);
+//   } else {
+//     done({ message: "User not found" }, null);
+//   }
+// });
 
 const passportLocalStrategy: PassportStrategy = {
   name: 'local',
