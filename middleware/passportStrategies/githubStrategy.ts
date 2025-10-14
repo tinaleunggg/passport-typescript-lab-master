@@ -18,7 +18,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
     /* FIX ME 😭 */
     (req: any, accessToken: any, refreshToken: any, profile: any, done: any) => {
         console.log(profile);
-        const userName = profile.name;
+        const userName = profile.username;
         const new_user = userModel.addNewUser(userName);
 
         return done(null, new_user);

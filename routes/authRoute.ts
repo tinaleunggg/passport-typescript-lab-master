@@ -21,17 +21,14 @@ router.post(
 
 router.get('/github',
   passport.authenticate('github', { 
-    scope: [ 'user:email' ],
-    successRedirect: "/dashboard",
-    failureRedirect: '/auth/login' 
+    scope: [ 'user:email' ]
   })
 );
 
-router.get('/auth/github/callback', 
+router.get('/github/callback', 
   passport.authenticate('github', { failureRedirect: '/auth/login' }),
   function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/dashboard');
   });
 
 
