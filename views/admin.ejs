@@ -1,5 +1,12 @@
 <h1 class="mt-4">Admin Dashboard</h1>
 <p class="lead mb-3">Welcome Admin</p>
 
-<p><%= allSessions%></p>
+<div>
+<% for (let session of sessionData ) {%>
+<p>Session ID: <%= session.sessionId %></p>
+<p>User ID: <%= session.userId %></p>
+<a href="admin/revoke/<%=session.sessionId%>">Revoke session</a>
+<% } %>
+</div>
+
 <a href="/auth/logout" class="btn btn-secondary">Logout</a>

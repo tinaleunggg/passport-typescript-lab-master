@@ -37,7 +37,7 @@ let database = [
     id: 4,
     name: "admin",
     email: "admin@gmail.com",
-    password: "password",
+    password: "1234",
     role: "admin"
   }
 ];
