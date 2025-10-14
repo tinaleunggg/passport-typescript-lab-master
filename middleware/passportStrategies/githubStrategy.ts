@@ -15,9 +15,9 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
         passReqToCallback: true,
     },
     
-    /* FIX ME 😭 */
-    (req: any, accessToken: any, refreshToken: any, profile: any, done: any) => {
-        console.log(profile);
+    /* ✅FIX ME 😭 */
+    (req: Express.Request, accessToken: string, refreshToken: string, profile: any, done: Function) => {
+
         const userName = profile.username;
         const new_user = userModel.addNewUser(userName);
 
