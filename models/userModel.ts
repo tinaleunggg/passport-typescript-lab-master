@@ -1,4 +1,15 @@
-import crypto from 'crypto';
+declare global {
+  namespace Express {
+    export interface User {
+      id: number,
+      name: string,
+      email: string,
+      password: string,
+      role: string
+    }
+  }
+}
+
 
 let database = [
   {
@@ -6,19 +17,29 @@ let database = [
     name: "Jimmy Smith",
     email: "jimmy123@gmail.com",
     password: "jimmy123!",
+    role: "user"
   },
   {
     id: 2,
     name: "Johnny Doe",
     email: "johnny123@gmail.com",
     password: "johnny123!",
+    role: "user"
   },
   {
     id: 3,
     name: "Jonathan Chen",
     email: "jonathan123@gmail.com",
     password: "jonathan123!",
+    role: "user"
   },
+  {
+    id: 4,
+    name: "admin",
+    email: "",
+    password: "password",
+    role: "admin"
+  }
 ];
 
 const userModel = {
@@ -45,7 +66,8 @@ const userModel = {
       id: new_id,
       name: name,
       email: "",
-      password: ""
+      password: "",
+      role: "user"
     };
     database.push(new_user);
     return new_user

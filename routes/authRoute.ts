@@ -30,8 +30,7 @@ router.get('/github/callback',
   function(req, res) {
     res.redirect('/dashboard');
   });
-
-
+  
 router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) console.log(err);

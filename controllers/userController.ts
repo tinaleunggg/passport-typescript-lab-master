@@ -1,16 +1,5 @@
 import {userModel} from "../models/userModel";
 
-declare global {
-  namespace Express {
-    export interface User {
-      id: number,
-      name: string,
-      email: string,
-      password: string,
-    }
-  }
-}
-
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
   let user = userModel.findOne(email);
   if (user) {
