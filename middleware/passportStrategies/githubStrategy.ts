@@ -1,11 +1,8 @@
 import passport from "passport";
 import { Strategy as GitHubStrategy } from 'passport-github2';
 import { PassportStrategy } from '../../interfaces/index';
-import dotenv from "dotenv"
 import { userModel } from "../../models/userModel";
 import { getUserByEmailIdAndPassword, getUserById} from "../../controllers/userController";
-
-dotenv.config({path: ".env"});
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
     {
