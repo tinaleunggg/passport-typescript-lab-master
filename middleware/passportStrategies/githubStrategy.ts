@@ -11,15 +11,12 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
         callbackURL: "http://localhost:8000/auth/github/callback",
         passReqToCallback: true,
     },
-    
+     
     /* ✅FIX ME 😭 */
     (req: Express.Request, accessToken: string, refreshToken: string, profile: any, done: (err?: Error | null, profile?: any) => void) => {
-
-        const userName = profile.username;
-        const userId = profile.id;
-        const user = userModel.findOrCreate(userName, userId);
-
-        return done(null, user);
+      userModel.findOrCreate({name: profile.username, userId: profile.id}, function (err, user) {
+        return done(err, user);
+    });
     },
 );
 

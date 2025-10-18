@@ -60,20 +60,24 @@ const userModel = {
     throw new Error(`Couldn't find user with id: ${id}`);
   },
 
-  findOrCreate: (name: string, userId: number) => {
-    let user: Express.User | undefined;
-    user = database.find((user) => user.id === userId);
-    if (!user) {
-      user = {
-      id: userId,
-      name: name,
-      email: "",
-      password: "",
-      role: "user"
-      };
-      database.push(user);
+  findOrCreate: (profile: {name: string, userId: number}, callback: (err?: Error | null, profile?: any) => void) => {
+    try {
+      let user: Express.User | undefined;
+        user = database.find((user) => user.id === profile.userId);
+        if (!user) {
+          user = {
+          id: profile.userId,
+          name: profile.name,
+          email: "",
+          password: "",
+          role: "user"
+          };
+          database.push(user);
+        }
+      callback(null, user)
+    } catch (err:any) {
+      callback(err, null)
     }
-    return user
   }
 };
 
