@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as GitHubStrategy } from 'passport-github2';
 import { PassportStrategy } from '../../interfaces/index';
 import { userModel } from "../../models/userModel";
-import { getUserByEmailIdAndPassword, getUserById} from "../../controllers/userController";
+import { getUserById} from "../../controllers/userController";
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
     {
@@ -13,12 +13,13 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
     },
     
     /* ✅FIX ME 😭 */
-    (req: Express.Request, accessToken: string, refreshToken: string, profile: any, done: Function) => {
+    (req: Express.Request, accessToken: string, refreshToken: string, profile: any, done: (err?: Error | null, profile?: any) => void) => {
 
         const userName = profile.username;
-        const new_user = userModel.addNewUser(userName);
+        const userId = profile.id;
+        const user = userModel.findOrCreate(userName, userId);
 
-        return done(null, new_user);
+        return done(null, user);
     },
 );
 
